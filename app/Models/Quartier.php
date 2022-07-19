@@ -4,8 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use app\Models\Commune;
 
 class Quartier extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nom_Quartier'];
+
+    public function commune()
+    {
+        return $this->belongsTo(Commune::class);
+    }
 }

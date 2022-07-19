@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('departements', function (Blueprint $table) {
-            $table->id('id_departement');
-            $table->string('nom_Departement');
-            $table->unsignedBigInteger('id_region');
-            $table->foreign('id_region')->references('id_region')->on('regions');
+        Schema::create('secteurs', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departements');
+        Schema::dropIfExists('secteurs');
     }
 };

@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('quartiers', function (Blueprint $table) {
             $table->id('id_quartier');
             $table->string('nom_Quartier');
+            $table->unsignedBigInteger('id_commune');
+            $table->foreign('id_commune')->references('id_commune')->on('communes');
             $table->timestamps();
         });
     }

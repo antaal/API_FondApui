@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id('id_resultat');
             $table->string('nom_Resultat');
             $table->String('description_Resultat');
+            $table->unsignedBigInteger('id_activite');
+            $table->foreign('id_activite')->references('id_activite')->on('activites');
             $table->timestamps();
         });
     }
