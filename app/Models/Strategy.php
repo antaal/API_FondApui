@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Strategy extends Model
 {
     use HasFactory;
+
+    public function risque()
+    {
+        return $this->belongsTo(Risque::class);
+    }
 }

@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('budgets', function (Blueprint $table) {
-            $table->id('id_budget');
-            $table->string('nom_Budget');
-            $table->double('cout_Unitaire');
-            $table->integer('Quantite');
-            $table->double('cout_Total');
-            $table->double('sous_Total');
-            $table->double('total_Somme');
+        Schema::create('strategies', function (Blueprint $table) {
+            $table->id('id_strategy');
+            $table->string('nom_Strategy');
+            $table->String('description_Strategy');
+            $table->unsignedBigInteger('id_risque');
+            $table->foreign('id_risque')->references('id_risque')->on('risques');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('budgets');
+        Schema::dropIfExists('strategies');
     }
 };

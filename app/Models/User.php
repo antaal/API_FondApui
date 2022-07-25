@@ -22,8 +22,15 @@ class User extends Authenticatable
         'prenom',
         'email',
         'password',
-        'date_Naissance',
     ];
+
+    public function responsables() {
+        return $this->hasOne(Responsable::class);
+    }
+
+    public function administrateurs() {
+        return $this->hasOne(Administrateur::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

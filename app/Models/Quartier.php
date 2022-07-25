@@ -16,4 +16,8 @@ class Quartier extends Model
     {
         return $this->belongsTo(Commune::class);
     }
+    public function responsables()
+    {
+        return $this->hasMany(Responsable::class);
+    }
 }

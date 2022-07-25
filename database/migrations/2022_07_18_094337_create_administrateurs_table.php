@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('activites', function (Blueprint $table) {
-            $table->id('id_activite');
-            $table->string('nom_Activite');
-            $table->String('description_Activite');
+        Schema::create('administrateurs', function (Blueprint $table) {
+            $table->id('id_administrateur');
+            $table->unsignedBigInteger('id_users');
+            $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activites');
+        Schema::dropIfExists('administrateurs');
     }
 };

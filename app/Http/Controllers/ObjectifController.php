@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Planning;
+use App\Models\Objectif;
 use Illuminate\Http\Request;
 
-class PlanningController extends Controller
+class ObjectifController extends Controller
 {
     //
     public function index()
     {
-        return Planning::all();
+        return Objectif::all();
     }
 }

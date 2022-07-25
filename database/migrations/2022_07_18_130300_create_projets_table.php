@@ -27,7 +27,9 @@ return new class extends Migration
             $table->string('Objectif_General');
             $table->string('Description_General');
             $table->string('indicateur_Performance');
+            $table->string('statut_Projet');
             $table->boolean('autre_Financement_Fond');
+            $table->dateTime('date_Autre_Financement');
             $table->boolean('projet_Etudier');
             $table->dateTime('date_Etude');
             $table->boolean('projet_Evaluer');
@@ -35,6 +37,12 @@ return new class extends Migration
             $table->double('subvention_Sollicitee');
             $table->double('somme_Autre_Soutien');
             $table->double('total_Budget');
+           $table->unsignedBigInteger('id_offre');
+            $table->foreign('id_offre')->references('id_offre')->on('offres');
+            $table->unsignedBigInteger('id_responsable');
+            $table->foreign('id_responsable')->references('id_responsable')->on('responsables');
+            $table->unsignedBigInteger('id_administrateur');
+            $table->foreign('id_administrateur')->references('id_administrateur')->on('administrateurs');
             $table->timestamps();
         });
     }

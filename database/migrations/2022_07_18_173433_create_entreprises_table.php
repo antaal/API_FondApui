@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id('id_entreprise');
             $table->string('nom_Entreprise');
             $table->string('NINEA');
+            $table->unsignedBigInteger('id_responsable');
+            $table->foreign('id_responsable')->references('id_responsable')->on('responsables');
             $table->timestamps();
         });
     }

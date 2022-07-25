@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Association extends Model
 {
     use HasFactory;
+    public function responsable()
+    {
+        return $this->belongsTo(Responsable::class);
+    }
 }

@@ -15,12 +15,17 @@ return new class extends Migration
     {
         Schema::create('responsables', function (Blueprint $table) {
             $table->id("id_responsable");
+            $table->dateTime('date_Naissance');
             $table->string('Telephone');
             $table->boolean('Genre');
             $table->string('Numero_identite');
             $table->string('releve_Bancaire');
             $table->string('CNI_recto');
             $table->string('CNI_verso');
+            $table->unsignedBigInteger('id_quartier');
+            $table->foreign('id_quartier')->references('id_quartier')->on('quartiers');
+            $table->unsignedBigInteger('id_users');
+            $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }

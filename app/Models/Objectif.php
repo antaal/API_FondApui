@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use app\Models\Projet;
 
-class Entreprise extends Model
+class Objectif extends Model
 {
     use HasFactory;
-    public function responsable()
+   
+    public function projet()
     {
-        return $this->belongsTo(Responsable::class);
+        return $this->belongsTo(Projet::class);
     }
 }

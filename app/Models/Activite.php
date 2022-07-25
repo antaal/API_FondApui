@@ -21,4 +21,9 @@ class Activite extends Model
     {
         return $this->hasOne(Resultat::class);
     }
+
+    public function projet()
+    {
+        return $this->belongsTo('Projet::class');
+    }
 }

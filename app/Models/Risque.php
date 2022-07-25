@@ -14,4 +14,8 @@ class Risque extends Model
     {
         return $this->belongsTo(Activite::class);
     }
+    public function strategy()
+    {
+        return $this->hasOne(Strategy::class);
+    }
 }

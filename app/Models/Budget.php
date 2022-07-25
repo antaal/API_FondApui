@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Budget extends Model
 {
     use HasFactory;
+
+public function projet()
+    {
+        return $this->belongsTo(Projet::class);
+    }
 }

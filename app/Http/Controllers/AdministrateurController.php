@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Planning;
 use Illuminate\Http\Request;
-
-class PlanningController extends Controller
+use App\Models\Administrateur;
+class AdministrateurController extends Controller
 {
     //
     public function index()
     {
-        return Planning::all();
+        return Administrateur::all();
     }
 }

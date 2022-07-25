@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Planning;
+use App\Models\Offre;
 use Illuminate\Http\Request;
 
-class PlanningController extends Controller
+class OffreController extends Controller
 {
     //
     public function index()
     {
-        return Planning::all();
+        return Offre::all();
     }
 }

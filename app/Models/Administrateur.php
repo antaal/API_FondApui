@@ -5,11 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Secteur extends Model
+class Administrateur extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom_Secteur'];
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function projets()
+    {
+        return $this->hasMany(Projet::class);
+    }
     public function offres()
     {
         return $this->hasMany(Offre::class);
