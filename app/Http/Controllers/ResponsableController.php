@@ -12,4 +12,24 @@ class ResponsableController extends Controller
     {
         return Responsable::all();
     }
+    public function show($id)
+    {
+        return Responsable::findorfail($id);
+    }
+    public function store(Request $request)
+    {
+        $responsable = Responsable::create($request->all());
+        return response()->json($responsable, 201);
+    }
+    public function update(Request $request, $id)
+    {
+        $responsable = Responsable::findorfail($id);
+        $responsable->update($request->all());
+        return response()->json($responsable, 200);
+    }
+    public function destroy($id)
+    {
+        Responsable::findorfail($id)->delete();
+        return response()->json(null, 204);
+    }
 }

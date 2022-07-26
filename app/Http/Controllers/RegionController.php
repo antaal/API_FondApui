@@ -20,5 +20,21 @@ class RegionController extends Controller
         $Region = Region::findorfail($id);
         return response()->json($Region);
     }
+    public function store(Request $request)
+    {
+        $Region = Region::create($request->all());
+        return response()->json($Region, 201);
+    }
+    public function update(Request $request, $id)
+    {
+        $Region = Region::findorfail($id);
+        $Region->update($request->all());
+        return response()->json($Region, 200);
+    }
+    public function destroy($id)
+    {
+        Region::findorfail($id)->delete();
+        return response()->json(null, 204);
+    }
    
 }

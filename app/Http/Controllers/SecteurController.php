@@ -12,4 +12,24 @@ class SecteurController extends Controller
     {
         return Secteur::all();
     }
+    public function show($id)
+    {
+        return Secteur::findorfail($id);
+    }
+    public function store(Request $request)
+    {
+        $secteur = Secteur::create($request->all());
+        return response()->json($secteur, 201);
+    }
+    public function update(Request $request, $id)
+    {
+        $secteur = Secteur::findorfail($id);
+        $secteur->update($request->all());
+        return response()->json($secteur, 200);
+    }
+    public function destroy($id)
+    {
+        Secteur::findorfail($id)->delete();
+        return response()->json(null, 204);
+    }
 }
