@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('offres', function (Blueprint $table) {
-            $table->id('id_offre');
+            $table->id();
             $table->string('titre');
             $table->string('description');
             $table->dateTime('date_Lancement');
             $table->dateTime('fin_Depot');
             $table->unsignedBigInteger('id_secteur');
-            $table->foreign('id_secteur')->references('id_secteur')->on('secteurs');
+            $table->foreign('id_secteur')->references('id')->on('secteurs');
             $table->unsignedBigInteger('id_administrateur');
-            $table->foreign('id_administrateur')->references('id_administrateur')->on('administrateurs');
+            $table->foreign('id_administrateur')->references('id')->on('administrateurs');
             $table->timestamps();
         });
     }

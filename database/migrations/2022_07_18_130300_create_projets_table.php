@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('projets', function (Blueprint $table) {
-            $table->id('id_projet');
+            $table->id();
             $table->string('nom_Projet');
             $table->string('objet_Projet');
             $table->integer('duree_Execution');
@@ -38,11 +38,11 @@ return new class extends Migration
             $table->double('somme_Autre_Soutien');
             $table->double('total_Budget');
            $table->unsignedBigInteger('id_offre');
-            $table->foreign('id_offre')->references('id_offre')->on('offres');
+              $table->foreign('id_offre')->references('id')->on('offres');
             $table->unsignedBigInteger('id_responsable');
-            $table->foreign('id_responsable')->references('id_responsable')->on('responsables');
+            $table->foreign('id_responsable')->references('id')->on('responsables');
             $table->unsignedBigInteger('id_administrateur');
-            $table->foreign('id_administrateur')->references('id_administrateur')->on('administrateurs');
+            $table->foreign('id_administrateur')->references('id')->on('administrateurs');
             $table->timestamps();
         });
     }

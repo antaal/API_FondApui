@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('responsables', function (Blueprint $table) {
-            $table->id("id_responsable");
+            $table->id();
             $table->dateTime('date_Naissance');
             $table->string('Telephone');
             $table->boolean('Genre');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('CNI_recto');
             $table->string('CNI_verso');
             $table->unsignedBigInteger('id_quartier');
-            $table->foreign('id_quartier')->references('id_quartier')->on('quartiers');
+            $table->foreign('id_quartier')->references('id')->on('quartiers');
             $table->unsignedBigInteger('id_users');
             $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();

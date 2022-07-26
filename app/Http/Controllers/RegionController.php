@@ -15,9 +15,9 @@ class RegionController extends Controller
 
     }
 
-    public function show($id_region)
+    public function show($id)
     {
-        $Region = Region::find($id_region);
+        $Region = Region::findorfail($id);
         return response()->json($Region);
     }
    

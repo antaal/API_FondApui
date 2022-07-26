@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('strategies', function (Blueprint $table) {
-            $table->id('id_strategy');
+            $table->id();
             $table->string('nom_Strategy');
             $table->String('description_Strategy');
             $table->unsignedBigInteger('id_risque');
-            $table->foreign('id_risque')->references('id_risque')->on('risques');
+            $table->foreign('id_risque')->references('id')->on('risques');
             $table->timestamps();
         });
     }

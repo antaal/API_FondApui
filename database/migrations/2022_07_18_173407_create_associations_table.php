@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('associations', function (Blueprint $table) {
-            $table->id('id_association');
+            $table->id();
             $table->string('nom_Association');
             $table->String('Recepisse');
             $table->string('copie_Statut');
             $table->unsignedBigInteger('id_responsable');
-            $table->foreign('id_responsable')->references('id_responsable')->on('responsables');
+            $table->foreign('id_responsable')->references('id')->on('responsables');
             $table->timestamps();
         });
     }

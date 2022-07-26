@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('budgets', function (Blueprint $table) {
-            $table->id('id_budget');
+            $table->id();
             $table->string('nom_Budget');
             $table->double('cout_Unitaire');
             $table->integer('Quantite');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->double('sous_Total');
             $table->double('total_Somme');
             $table->unsignedBigInteger('id_projet');
-            $table->foreign('id_projet')->references('id_projet')->on('projets');
+            $table->foreign('id_projet')->references('id')->on('projets');
             $table->timestamps();
         });
     }
