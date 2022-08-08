@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('offres', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
+            $table->string('images');
             $table->string('description');
             $table->dateTime('date_Lancement');
             $table->dateTime('fin_Depot');
