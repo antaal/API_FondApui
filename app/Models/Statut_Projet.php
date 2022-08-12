@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Statut_Projet extends Model
 {
     use HasFactory;
+    protected $fillable = ['libelle'];
 }

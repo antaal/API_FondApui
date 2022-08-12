@@ -31,13 +31,13 @@ class Projet extends Model
     {
         return $this->belongsTo(Responsable::class);
     }
+    public function etat()
+    {
+        return $this->belongsTo(Etat::class);
+    }
     public function activites()
     {
         return $this->hasMany('Activite::class');
-    }
-    public function administrateurs()
-    {
-        return $this->belongsTo(Administrateur::class);
     }
     public function offre()
     {
