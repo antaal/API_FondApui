@@ -51,6 +51,15 @@ class OffreSeeder extends Seeder
             'id_secteur' => 1,
             'id_administrateur' => 2,
         ]);
+        Offre::create([
+            'titre' => 'Offre 5',
+            'images' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Attributs_de_la_peinture%2C_de_la_sculpture_et_de_l%27architecture_-_Anne_Vallayer-Coster.jpg/1024px-Attributs_de_la_peinture%2C_de_la_sculpture_et_de_l%27architecture_-_Anne_Vallayer-Coster.jpg',
+            'description' => 'Lorem ipsum dolor sit amet',
+            'date_Lancement' => '2020-07-18',
+            'fin_Depot' => '2020-07-18',
+            'id_secteur' => 1,
+            'id_administrateur' => 2,
+        ]);
             
     }
 }
