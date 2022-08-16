@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Administrateur;
+use App\Models\Activite;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AdminSeeder extends Seeder
+class ActiviteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,14 +16,6 @@ class AdminSeeder extends Seeder
     public function run()
     {
         //
-        Administrateur::create([
-            'id_users' =>1,
-
-        ]);
-        Administrateur::create([
-            'id_users' =>2,
-
-        ]);
+       
     }
-    
 }

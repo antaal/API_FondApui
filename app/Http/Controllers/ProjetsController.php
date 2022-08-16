@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activite;
+use App\Models\Budget;
+use App\Models\Etat;
+use App\Models\Objectif;
 use App\Models\Projet;
+use App\Models\Responsable;
 use Illuminate\Http\Request;
 
 class ProjetsController extends Controller
@@ -18,7 +23,14 @@ class ProjetsController extends Controller
     }
     public function store(Request $request)
     {
-        $projet = Projet::create($request->all());
+        $inputs = $request->all();
+
+        $responsable = Responsable::create($request->all());
+        $etat = Etat::create($request->all());
+
+        $inputs['responsable_id'] = $responsable->id;
+        $inputs['etat_id'] = $etat->id;
+        $projet = Projet::create($inputs);
         return response()->json($projet, 201);
     }
     public function update(Request $request, $id)

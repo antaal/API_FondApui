@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Departement;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +21,16 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call([
+            RegionSeeder::class,
+            DepartementSeeder::class,
+            CommuneSeeder::class,
+            QuartierSeeder::class,
+            UserSeeder::class,
+            AdminSeeder::class,
+            SecteurSeeder::class,
+            OffreSeeder::class,
+            ResponsableSeeder::class
+        ]);
     }
 }

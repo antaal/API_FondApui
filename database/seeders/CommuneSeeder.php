@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Administrateur;
+use App\Models\Commune;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AdminSeeder extends Seeder
+class CommuneSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,14 +16,13 @@ class AdminSeeder extends Seeder
     public function run()
     {
         //
-        Administrateur::create([
-            'id_users' =>1,
-
+        Commune::create([
+            'nom_Commune' => 'Sacre Coeur',
+            'id_Departement' => 1,
         ]);
-        Administrateur::create([
-            'id_users' =>2,
-
+        Commune::create([
+            'nom_Commune' => 'Hann Mariste',
+            'id_Departement' => 1,
         ]);
     }
-    
 }

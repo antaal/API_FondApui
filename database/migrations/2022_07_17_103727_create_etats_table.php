@@ -19,8 +19,10 @@ return new class extends Migration
             $table->dateTime('date_Etude');
             $table->boolean('projet_Evaluer');
             $table->dateTime('date_Evaluation');
-            $table->unsignedBigInteger('id_statut');
-            $table->foreign('id_statut')->references('id')->on('statut__projets');
+            // $table->unsignedBigInteger('id_statut');
+            // $table->foreign('id_statut')->references('id')->on('statut__projets');
+            $table->enum('statut__projets', ['en attente', 'en cours', 'termine'])->nullable()->default("en attente");
+
             $table->timestamps();
         });
     }
