@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Responsable extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'date_Naissance'=>'datetime:Y-m-d',
+    ];
 
-    protected $fillable = ['nom_responsable', 'prenom_responsable', 'email_responsable', 'password_responsable'];
-
+    protected $guarded = ["id"];
     public function projets()
     {
         return $this->hasOne(Projet::class);
@@ -19,14 +21,7 @@ class Responsable extends Model
     {
         return $this->belongsTo(Quartier::class);
     }
-    public function entreprises()
-    {
-        return $this->hasOne(Entreprise::class);
-    }
-    public function associations()
-    {
-        return $this->hasOne(Association::class);
-    }
+   
     public function user()
     {
         return $this->belongsTo(User::class);

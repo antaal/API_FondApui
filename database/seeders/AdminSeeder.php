@@ -17,11 +17,11 @@ class AdminSeeder extends Seeder
     {
         //
         Administrateur::create([
-            'id_users' =>1,
+            'id_users' =>2,
 
         ]);
         Administrateur::create([
-            'id_users' =>2,
+            'id_users' =>3,
 
         ]);
     }

@@ -17,17 +17,26 @@ class UserSeeder extends Seeder
     {
         //
         User::create([
-           'nom' => 'Diop',
+           'nom' => 'Diooop',
               'prenom' => 'Yassine',
                 'email' => 'Yassine@gmail.com',
                 'password' => bcrypt('123456')
         ]);
+
         User::create([
-            'nom' => 'Diop',
-               'prenom' => 'Yass',
-                 'email' => 'Yass@gmail.com',
-                 'password' => bcrypt('123')
+            'nom' => 'Diooop',
+               'prenom' => 'Anta',
+                 'email' => 'Yase@gmail.com',
+                 'password' => bcrypt('123456')
          ]);
+
+         User::create([
+            'nom' => 'gueye',
+               'prenom' => 'Antaal',
+                 'email' => 'yrase@gmail.com',
+                 'password' => bcrypt('123456')
+         ]);
+        
         
        
     }

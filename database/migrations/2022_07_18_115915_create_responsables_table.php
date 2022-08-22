@@ -21,14 +21,17 @@ return new class extends Migration
             $table->string('Numero_identite');
             $table->string('releve_Bancaire');
             $table->string('CNI_recto');
-            $table->string('CNI_verso');
-            $table->String('NINEA_Recepisse');
-            $table->enum('type_Representant', ['Association', 'Entreprise', 'Individu'])->default("Individu");
+            // $table->string('CNI_verso');
+            // $table->String('NINEA_Recepisse');
+            $table->enum('type_Representant',
+             ['Association', 'Entreprise', 'Individu'])
+            // ->default("Individu")
+            ;
 
             $table->unsignedBigInteger('id_quartier');
             $table->foreign('id_quartier')->references('id')->on('quartiers');
-            $table->unsignedBigInteger('id_users');
-            $table->foreign('id_users')->references('id')->on('users');
+            // $table->unsignedBigInteger('id_users');
+            // $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }
