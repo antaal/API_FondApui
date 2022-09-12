@@ -30,12 +30,12 @@ class UserSeeder extends Seeder
       //            'password' => bcrypt('123456')
       //    ]);
 
-      //    User::create([
-      //       'nom' => 'gueye',
-      //          'prenom' => 'Antaal',
-      //            'email' => 'yrase@gmail.com',
-      //            'password' => bcrypt('123456')
-      //    ]);
+         User::create([
+            'nom' => 'gueye',
+               'prenom' => 'Antaal',
+                 'email' => 'yrase@gmail.com',
+                 'password' => bcrypt('123456')
+         ]);
         
         
        

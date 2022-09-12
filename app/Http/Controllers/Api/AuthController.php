@@ -1,19 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use App\Models\User;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class AuthController extends Controller
-{
-    //
-    public function register(Request $request){
+class AuthController extends Controller{
+    public function register(Request $request)
+    {
         $validations= Validator::make($request->all(),[
             'nom'=>'required|string',
             'prenom'=>'required|string',
@@ -23,21 +20,20 @@ class AuthController extends Controller
         ]);
         //check error
         if($validations->fails()){
-            $error = $validations->errors();
+            $errors = $validations->errors();
             return response()->json([
-                'errors' => $error,
+                'errors' => $errors,
                 'status'=>401
             ]);
         }
         //check if validations is successs
    
-
    
         $user = User::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password)
         ]);
         
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -45,29 +41,28 @@ class AuthController extends Controller
                 'token' => $token,
                 'type' => 'Bearer'
             ]);
+    }
+
+    
+    public function login(Request $request){
+        if(!Auth::attempt($request->only(['email','password']))){
+            return response()->json([
+                'message' => 'Information de Connexion non reconnus',
+                'status'=>401
+            ]);
+        }
+        $user = User::where('email,$request->email')->firstOrFail();
+        $token = $user->createToken('auth_token')->plainTextToken;
+        return response()->json([
+            'token' => $token,
+            'type' => 'Bearer'
+        ])->cookie('jwt',$token);
+
+
         
     }
 
-        public function login(Request $request){
-            if(!Auth::attempt($request->only(['email','password']))){
-                return response()->json([
-                    'message' => 'Information de Connexion non reconnus',
-                    'status'=>401
-                ]);
-            }
-            $user = User::where('email,$request->email')->firstOrFail();
-            $token = $user->createToken('auth_token')->plainTextToken;
-            return response()->json([
-                'token' => $token,
-                'type' => 'Bearer'
-            ])->cookie('jwt',$token);
-
-
-            
-        }
-
-    public function user(Request $request){
-        return $request->user();
-    }
-
+public function user(Request $request){
+    return $request->user();
+}
 }
