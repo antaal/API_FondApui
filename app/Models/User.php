@@ -24,9 +24,9 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function responsables() {
-        return $this->hasOne(Responsable::class);
-    }
+    // public function responsables() {
+    //     return $this->hasOne(Responsable::class);
+    // }
 
     public function administrateurs() {
         return $this->hasOne(Administrateur::class);

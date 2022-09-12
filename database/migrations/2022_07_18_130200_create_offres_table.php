@@ -20,10 +20,12 @@ return new class extends Migration
             $table->string('description');
             $table->dateTime('date_Lancement');
             $table->dateTime('fin_Depot');
-            $table->unsignedBigInteger('id_secteur');
-            $table->foreign('id_secteur')->references('id')->on('secteurs');
-            $table->unsignedBigInteger('id_administrateur');
-            $table->foreign('id_administrateur')->references('id')->on('administrateurs');
+            $table->unsignedBigInteger('secteur_id')->nullable();
+            $table->foreign('secteur_id')->references('id')->on('secteurs');
+            // $table->unsignedBigInteger('administrateur_id');
+            // $table->foreign('administrateur_id')
+            // ->references('id')
+            // ->on('administrateurs')->nullable();
             $table->timestamps();
         });
     }

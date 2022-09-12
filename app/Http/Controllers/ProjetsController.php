@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Projet;
 use App\Models\Responsable;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjetsController extends Controller
@@ -20,8 +21,7 @@ class ProjetsController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // return response()->json($request->all(), 201);
-
+       
        $responsable=Responsable::create($request->all());
        $data['responsable_id']=$responsable->id;
         $projet= Projet::create($data);        

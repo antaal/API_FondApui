@@ -21,8 +21,8 @@ class OffreSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet',
             'date_Lancement' => '2020-07-18',
             'fin_Depot' => '2020-07-18',
-            'id_secteur' => 1,
-            'id_administrateur' => 2,
+            'secteur_id' => 1,
+            // 'administrateur_id' => 2,
         ]);
         Offre::create([
             'titre' => 'Offre 2',
@@ -30,8 +30,8 @@ class OffreSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet',
             'date_Lancement' => '2020-07-18',
             'fin_Depot' => '2020-07-18',
-            'id_secteur' => 1,
-            'id_administrateur' => 2,
+            'secteur_id' => 1,
+            // 'administrateur_id' => 2,
         ]);
         Offre::create([
             'titre' => 'Offre 3',
@@ -39,8 +39,8 @@ class OffreSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet',
             'date_Lancement' => '2020-07-18',
             'fin_Depot' => '2020-07-18',
-            'id_secteur' => 1,
-            'id_administrateur' => 2,
+            'secteur_id' => 1,
+            // 'administrateur_id' => 2,
         ]);
         Offre::create([
             'titre' => 'Offre 4',
@@ -48,8 +48,8 @@ class OffreSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet',
             'date_Lancement' => '2020-07-18',
             'fin_Depot' => '2020-07-18',
-            'id_secteur' => 1,
-            'id_administrateur' => 2,
+            'secteur_id' => 1,
+            // 'administrateur_id' => 2,
         ]);
         Offre::create([
             'titre' => 'Offre 5',
@@ -57,8 +57,8 @@ class OffreSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet',
             'date_Lancement' => '2020-07-18',
             'fin_Depot' => '2020-07-18',
-            'id_secteur' => 1,
-            'id_administrateur' => 2,
+            'secteur_id' => 1,
+            // 'administrateur_id' => 2,
         ]);
             
     }

@@ -22,9 +22,9 @@ class Responsable extends Model
         return $this->belongsTo(Quartier::class);
     }
    
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
 }

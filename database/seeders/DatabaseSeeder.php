@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             SecteurSeeder::class,
             OffreSeeder::class,
-            ResponsableSeeder::class
+            ResponsableSeeder::class,
+            PermissionsSeeder::class
         ]);
     }
 }

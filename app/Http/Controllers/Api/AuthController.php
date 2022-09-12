@@ -31,6 +31,8 @@ class AuthController extends Controller
         }
         //check if validations is successs
    
+
+   
         $user = User::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
@@ -43,8 +45,8 @@ class AuthController extends Controller
                 'token' => $token,
                 'type' => 'Bearer'
             ]);
-        }
-
+        
+    }
 
         public function login(Request $request){
             if(!Auth::attempt($request->only(['email','password']))){

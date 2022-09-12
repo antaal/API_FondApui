@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('responsables', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('prenom');
+   
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
             $table->dateTime('date_Naissance');
             $table->string('Telephone');
             $table->boolean('Genre');
@@ -30,8 +36,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('id_quartier');
             $table->foreign('id_quartier')->references('id')->on('quartiers');
-            // $table->unsignedBigInteger('id_users');
-            // $table->foreign('id_users')->references('id')->on('users');
+            // $table->unsignedBigInteger('users_id');
+            // $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

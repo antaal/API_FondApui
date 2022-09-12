@@ -15,15 +15,15 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        //
-        Administrateur::create([
-            'id_users' =>2,
+        // //
+        // Administrateur::create([
+        //     'id_users' =>2,
 
-        ]);
-        Administrateur::create([
-            'id_users' =>3,
+        // ]);
+        // Administrateur::create([
+        //     'id_users' =>3,
 
-        ]);
+        // ]);
     }
     
 }
