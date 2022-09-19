@@ -51,11 +51,12 @@ class AuthController extends Controller{
                 'status'=>401
             ]);
         }
-        $user = User::where('email,$request->email')->firstOrFail();
+        $user = User::where('email',$request->email)->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
         return response()->json([
             'token' => $token,
-            'type' => 'Bearer'
+            'type' => 'Bearer',
+            'status' =>200,
         ])->cookie('jwt',$token);
 
 

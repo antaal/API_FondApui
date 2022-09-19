@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offre;
-
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+
 
 class OffreController extends Controller
 {
@@ -21,93 +22,103 @@ class OffreController extends Controller
         $offre = Offre::findorfail($id);
         return response()->json($offre);
     }
-    // public function store(Request $request)
-    // {
-    //     // $offre = Offre::create($request->all());
-    //     // return response()->json($offre, 201);
-       
-    //      $offre = new Offre();
-
-
-    //     $offre->titre=$request->titre;
-    //     $offre->description=$request->description;
-    //     if ($request->images!="") {
-    //         $strpos = strpos($request->images, ';');
-    //         $sub = substr($request->images, 0, $strpos);
-    //         $ex = explode('/',$sub)[1];
-    //         $name = time().".".$ex;
-    //         $img = Image::make($request->images)->resize(117,100);
-    //         $upload_path = public_path()."/uploads/";
-    //         $img->save($upload_path.$name);
-    //         $offre->images =$name;
-    //     }else{
-    //         $offre->images ="images.png";
-    //     }
-    //     $offre->images =$name;
-    //     $offre->date_Lancement = $request->date_Lancement;
-    //     $offre->fin_Depot = $request->fin_Depot;
-    //     $offre->save();
-    //      return response()->json($offre, 201);
-
-    //     //////////Khoya//////////////////////////
-    //     // $offre = new Offre();
-    //     // if ($request->hasFile('images')) {
-    //     //     $file = $request->file('images');
-    //     //     $extension = $file->getClientOriginalExtension();
-    //     //     $filename = time().'.'.$extension;
-    //     //     $file->move('uploads/',$filename);
-    //     //     $request->photo = 'uploads/'.$filename;
-
-    //     //     $offre = Offre::create($request->all());
-    //     //     return response()->json($offre, 201);
-    //     //  }
-    // }
-
-    public function store(Request $request, Offre $offre) 
+    public function store(Request $request)
     {
-        $titre=$request->titre;
-        $images=$request->images;
-        $description=$request->description;
-        $date_Lancement=$request->date_Lancement;
-        $fin_Depot=$request->fin_Depot;
+        $request->validate([
+            'titre'=>'required',
+            'image'=>'required|image',
+            'description'=>'required',
+            
+        ]);
 
-        if(!empty($titre) && !empty($images)) {
-            $offre ->titre=$titre;
-            $offre->images=$images;
-            $offre->description=$description;
-            $offre->date_Lancement=$date_Lancement;
-            $offre->fin_Depot=$fin_Depot;
-            $offre->save();
+        try{
+            $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs('offres/image', $request->image,$imageName);
+            Offre::create($request->post()+['image'=>$imageName]);
 
             return response()->json([
-                'offre' => $offre,
-                'status' => '200',
-                'msg'=>'offre Ajoute'
+                'message'=>'offres Created Successfully!!'
+            ]);
+        }catch(\Exception $e){
+            \Log::error($e->getMessage());
+            return response()->json([
+                'message'=>'Something goes wrong while creating a offres!!'
+            ],500);
+        }
+    }
+
+    public function update(Request $request, Offre $offre)
+    {
+        // $offre = Offre::findorfail($id);
+        // $offre->update($request->all());
+        // return response()->json($offre, 200);
+        /////////////////////////////
+        $request->validate([
+            'title'=>'required',
+            'image'=>'nullable',
+            'description'=>'required'
+            
+        ]);
+
+        try{
+
+            $offre->fill($request->post())->update();
+
+            if($request->hasFile('image')){
+
+                // remove old image
+                if($offre->image){
+                    $exists = Storage::disk('public')->exists("offres/image/{$offre->image}");
+                    if($exists){
+                        Storage::disk('public')->delete("offres/image/{$offre->image}");
+                    }
+                }
+
+                $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
+                Storage::disk('public')->putFileAs('offres/image', $request->image,$imageName);
+                $offre->image = $imageName;
+                $offre->save();
+            }
+
+            return response()->json([
+                'message'=>'offres Updated Successfully!!'
             ]);
 
-
-        }else{
-            return response()->json(
-                [
-                    'msg' =>'on remplit',
-                    'status' =>400
-                ]
-                );
-        
+        }catch(\Exception $e){
+            \Log::error($e->getMessage());
+            return response()->json([
+                'message'=>'Something goes wrong while updating a offres!!'
+            ],500);
+        }
     }
 
+    public function destroy(Offre $offre)
+    {
+        // Offre::findorfail($id)->delete();
+        // return response()->json(null, 204);
+        ///////////////
         
+        try {
+
+            if($offre->image){
+                $exists = Storage::disk('public')->exists("offres/image/{$offre->image}");
+                if($exists){
+                    Storage::disk('public')->delete("offres/image/{$offre->image}");
+                }
+            }
+
+            $offre->delete();
+
+            return response()->json([
+                'message'=>'offres Deleted Successfully!!'
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json([
+                'message'=>'Something goes wrong while deleting a offres!!'
+            ]);
+        }
     }
-    public function update(Request $request, $id)
-    {
-        $offre = Offre::findorfail($id);
-        $offre->update($request->all());
-        return response()->json($offre, 200);
-    }
-    public function destroy($id)
-    {
-        Offre::findorfail($id)->delete();
-        return response()->json(null, 204);
-    }
-    
 }
+    

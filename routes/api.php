@@ -6,6 +6,7 @@ use App\Http\Controllers\AdministrateurController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\CommuneController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\QuartierController;
 use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\SecteurController;
@@ -34,6 +35,10 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('images', [ImageController::class, 'index'])->name('images');
+Route::post('images', [ImageController::class, 'upload'])->name('images');
+
 Route::controller(AdministrateurController::class)->group(function () {
     Route::get('/administrateurs', 'AdministrateurController@index');
     Route::get('/administrateurs/{id}', 'AdministrateurController@show');
@@ -98,15 +103,15 @@ Route::controller(SecteurController::class)->group(function () {
 });
 
 
-Route::controller(OffreController::class)->group(function () {
-    Route::get('/offres', 'OffreController@index');
-    Route::get('/offres/{id}', 'OffreController@show');
-    Route::post('/offres', 'OffreController@store');
-    Route::put('/offres/{id}', 'OffreController@update');
-    Route::delete('/offres/{id}', 'OffreController@destroy');
-});
+// Route::controller(OffreController::class)->group(function () {
+//     Route::get('/offres', 'OffreController@index');
+//     Route::get('/offres/{id}', 'OffreController@show');
+//     Route::post('/offres', 'OffreController@store');
+//     Route::put('/offres/{id}', 'OffreController@update');
+//     Route::delete('/offres/{id}', 'OffreController@destroy');
+// });
 
-
+Route::resource('offres',OffreController::class);
 
 
 
