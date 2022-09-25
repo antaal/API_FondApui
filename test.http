@@ -1,0 +1,13 @@
+### GET CURRENT USER
+GET http://localhost:8000/api/user
+Authorization: Bearer 2|dzYoQvle2VMXHnNtWjHD0v53o9qSIHR8fOiENafp
+
+
+### Store Projects
+POST http://localhost:8000/api/projets
+Authorization: Bearer 2|dzYoQvle2VMXHnNtWjHD0v53o9qSIHR8fOiENafp
+Content-Type: application/json
+
+{
+  "value": "content"
+}

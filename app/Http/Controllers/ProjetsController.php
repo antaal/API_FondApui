@@ -17,15 +17,17 @@ class ProjetsController extends Controller
     {
         return Projet::findorfail($id);
     }
-    
+
     public function store(Request $request)
     {
-        $data = $request->all();
-       
-       $responsable=Responsable::create($request->all());
-       $data['responsable_id']=$responsable->id;
-        $projet= Projet::create($data);        
-        return response()->json($projet, 201);
+        return $request->user();
+
+//        $data = $request->all();
+//
+//       $responsable=Responsable::create($request->all());
+//       $data['responsable_id']=$responsable->id;
+//        $projet= Projet::create($data);
+//        return response()->json($projet, 201);
         }
 
     public function update(Request $request, $id)
@@ -39,7 +41,7 @@ class ProjetsController extends Controller
         Projet::findorfail($id)->delete();
         return response()->json(null, 204);
     }
-    
+
      // public function uploadFile(File $file)
     // {
     //     $fileName = date('YmdHi') . $file->getClientOriginalName();
@@ -49,32 +51,32 @@ class ProjetsController extends Controller
     // public function upload(Request $request) {
     //     $imagesName = [];
     //     $response = [];
- 
+
     //     $validator = Validator::make($request->all(),
     //         [
     //             'images' => 'required',
     //             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
     //         ]
     //     );
- 
+
     //     if($validator->fails()) {
     //         return response()->json(["status" => "failed", "message" => "Validation error", "errors" => $validator->errors()]);
     //     }
- 
+
     //     if($request->has('images')) {
     //         foreach($request->file('images') as $image) {
     //             $filename = Str::random(32).".".$image->getClientOriginalExtension();
     //             $image->move('uploads/', $filename);
- 
+
     //             Image::create([
     //                 'image_name' => $filename
     //             ]);
     //         }
- 
+
     //         $response["status"] = "successs";
     //         $response["message"] = "Success! image(s) uploaded";
     //     }
- 
+
     //     else {
     //         $response["status"] = "failed";
     //         $response["message"] = "Failed! image(s) not uploaded";
@@ -89,7 +91,7 @@ class ProjetsController extends Controller
 //        $file = Storage::disk('local')->get('CNIRecto');
 // //check file in storage if exist
 //        if(Storage::disk('local')->exists('CNIRecto')){
-        
+
 //            //delete file from storage_path('CNIRecto')
 //            Storage::disk('local')->delete('CNIRecto');
 //     }
