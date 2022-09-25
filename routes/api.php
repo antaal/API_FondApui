@@ -30,7 +30,6 @@ Route::middleware('auth:sanctum')->group(function(){
 
 // get('/user', function (Request $request) {
 //     return $request->user();
-});
 //route Api/Authcontroller::controllers
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -100,6 +99,7 @@ Route::controller(SecteurController::class)->group(function () {
     Route::post('/secteurs', 'SecteurController@store');
     Route::put('/secteurs/{id}', 'SecteurController@update');
     Route::delete('/secteurs/{id}', 'SecteurController@destroy');
+});
 });
 
 
