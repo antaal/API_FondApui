@@ -26,8 +26,7 @@ return new class extends Migration
             $table->longText('Resume');
             $table->string('Description_General');
             $table->string('description_Objectif');
-            $table->boolean('autre_Financement_Fond');
-            $table->dateTime('date_Autre_Financement');
+            
             $table->double('subvention_Sollicitee');
             $table->double('somme_Autre_Soutien');
             $table->double('total_Budget');

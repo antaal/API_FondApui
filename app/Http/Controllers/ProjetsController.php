@@ -13,11 +13,12 @@ class ProjetsController extends Controller
     public function index()
     {
         return 
-        Projet::all();
-        // response()->json([
-        //     'status' => 'success',
-        //     'data' =>Responsable::with('responsable')->get()
-        // ], 200);
+        $projets=Projet::all();
+        response()->json([
+            'status' => 'success',
+            'projets' =>$projets
+            // 'data' =>Responsable::with('responsable')->get()
+        ], 200);
     }
     public function show($id)
     {

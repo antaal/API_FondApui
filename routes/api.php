@@ -53,17 +53,6 @@ Route::middleware('auth:sanctum')->group(function(){
 //route Api/Authcontroller::controllers
 
 
-Route::get('images', [ImageController::class, 'index'])->name('images');
-Route::post('images', [ImageController::class, 'upload'])->name('images');
-
-Route::controller(AdministrateurController::class)->group(function () {
-    Route::get('/administrateurs', 'AdministrateurController@index');
-    Route::get('/administrateurs/{id}', 'AdministrateurController@show');
-    Route::post('/administrateurs', 'AdministrateurController@store');
-    Route::put('/administrateurs/{id}', 'AdministrateurController@update');
-    Route::delete('/administrateurs/{id}', 'AdministrateurController@destroy');
-});
-
 
 Route::controller(CommuneController::class)->group(function () {
     Route::get('/communes', 'CommuneController@index');
@@ -93,13 +82,13 @@ Route::controller(RegionController::class)->group(function () {
 
 
 
-// Route::controller(SecteurController::class)->group(function () {
-//     Route::get('/secteurs', 'SecteurController@index');
-//     Route::get('/secteurs/{id}', 'SecteurController@show');
-//     Route::post('/secteurs', 'SecteurController@store');
-//     Route::put('/secteurs/{id}', 'SecteurController@update');
-//     Route::delete('/secteurs/{id}', 'SecteurController@destroy');
-// });
+Route::controller(SecteurController::class)->group(function () {
+    Route::get('/secteurs', 'SecteurController@index');
+    Route::get('/secteurs/{id}', 'SecteurController@show');
+    Route::post('/secteurs', 'SecteurController@store');
+    Route::put('/secteurs/{id}', 'SecteurController@update');
+    Route::delete('/secteurs/{id}', 'SecteurController@destroy');
+});
 
 
 

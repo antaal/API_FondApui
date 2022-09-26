@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->dateTime('date_Lancement');
             $table->dateTime('fin_Depot');
-            $table->string('secteur');
+            $table->string('secteurs');
             // $table->unsignedBigInteger('secteur_id')->nullable();
             // $table->foreign('secteur_id')->references('id')->on('secteurs');
             // $table->unsignedBigInteger('administrateur_id');

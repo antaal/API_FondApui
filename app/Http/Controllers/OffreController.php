@@ -54,7 +54,7 @@ class OffreController extends Controller
             $offre->description=$request->description;
             $offre->date_Lancement=$request->date_Lancement;
             $offre->fin_Depot=$request->fin_Depot;
-           
+            $offre->secteurs=$request->secteurs;
 
 
 
