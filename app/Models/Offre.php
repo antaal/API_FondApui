@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Offre extends Model
 {
     use HasFactory;
-    protected $fillable = ['titre', 'images', 'description', 'date_Lancement', 'fin_Depot'];
+    protected $guarded = ['id'];
 
     public function secteur()
     {

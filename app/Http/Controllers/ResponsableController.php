@@ -16,10 +16,10 @@ class ResponsableController extends Controller
     {
         return Responsable::findorfail($id);
     }
-    // public function store(Request $request)
-    // {
+    public function store(Request $request)
+    {
        
-    // }
+    }
     // public function update(Request $request, $id)
     // {
     //     $responsable = Responsable::findorfail($id);

@@ -6,24 +6,38 @@ use App\Models\Offre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
-
 
 class OffreController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return Offre::all();
     }
-   
-    public function show($id)
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        $offre = Offre::findorfail($id);
-        return response()->json($offre);
+        //
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
+        $offre = new Offre();
         $request->validate([
             'titre'=>'required',
             'image'=>'required|image',
@@ -33,8 +47,18 @@ class OffreController extends Controller
 
         try{
             $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('offres/image', $request->image,$imageName);
-            Offre::create($request->post()+['image'=>$imageName]);
+            $image=Storage::disk('public')->putFileAs('offres/image', $request->image,$imageName);
+            // return($image);
+            $offre->titre=$request->titre;
+            $offre->image=$image;
+            $offre->description=$request->description;
+            $offre->date_Lancement=$request->date_Lancement;
+            $offre->fin_Depot=$request->fin_Depot;
+           
+
+
+
+            $offre->save();
 
             return response()->json([
                 'message'=>'offres Created Successfully!!'
@@ -47,6 +71,36 @@ class OffreController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $offre = Offre::findorfail($id);
+        return response()->json($offre);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Offre  $offre
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Offre $offre)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Offre  $offre
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, Offre $offre)
     {
         // $offre = Offre::findorfail($id);
@@ -75,8 +129,12 @@ class OffreController extends Controller
                 }
 
                 $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
-                Storage::disk('public')->putFileAs('offres/image', $request->image,$imageName);
-                $offre->image = $imageName;
+                $image=Storage::disk('public')->putFileAs('offres/image', $request->image,$imageName);
+                // $offre->titre=$request->titre;
+                $offre->image=$image;
+                // $offre->description=$request->description;
+                // $offre->date_Lancement=$request->date_Lancement;
+                // $offre->fin_Depot=$request->fin_Depot;
                 $offre->save();
             }
 
@@ -92,6 +150,12 @@ class OffreController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Offre  $offre
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Offre $offre)
     {
         // Offre::findorfail($id)->delete();
@@ -121,4 +185,3 @@ class OffreController extends Controller
         }
     }
 }
-    

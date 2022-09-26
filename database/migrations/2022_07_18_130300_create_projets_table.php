@@ -32,10 +32,10 @@ return new class extends Migration
             $table->double('somme_Autre_Soutien');
             $table->double('total_Budget');
             $table->double('apport_Personnel');
-            $table->unsignedBigInteger('offre_id');
-            $table->foreign('offre_id')->references('id')->on('offres');
-            $table->unsignedBigInteger('responsable_id');
-            $table->foreign('responsable_id')->references('id')->on('responsables')
+            $table->unsignedBigInteger('offres_id');
+            $table->foreign('offres_id')->references('id')->on('offres');
+            $table->unsignedBigInteger('responsables_id');
+            $table->foreign('responsables_id')->references('id')->on('responsables')
             ->constrained()->onDelete('CASCADE');
             $table->String('description_Activite');
             $table->String('risque_Identifier');

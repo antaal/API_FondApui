@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             QuartierSeeder::class,
             UserSeeder::class,
             AdminSeeder::class,
-            SecteurSeeder::class,
-            OffreSeeder::class,
+            // SecteurSeeder::class,
+            // OffreSeeder::class,
             ResponsableSeeder::class,
                 
             // UserRoleSeeder::class

@@ -25,15 +25,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user',[AuthController::class,'user']);
+});
+    Route::controller(ProjetsController::class)->group(function () {
+        Route::get('/projets', 'ProjetsController@index');
+        Route::get('/projets/{id}', 'ProjetsController@show');
+        Route::post('/projets', 'ProjetsController@store');
+        Route::put('/projets/{id}', 'ProjetsController@update');
+        Route::delete('/projets/{id}', 'ProjetsController@destroy');
+    });
+
+    Route::controller(ResponsableController::class)->group(function () {
+        Route::get('/responsables', 'ResponsableController@index');
+        Route::get('/responsables/{id}', 'ResponsableController@show');
+        Route::post('/responsables', 'ResponsableController@store');
+        Route::put('/responsables/{id}', 'ResponsableController@update');
+        Route::delete('/responsables/{id}', 'ResponsableController@destroy');
+    });
 
 // get('/user', function (Request $request) {
 //     return $request->user();
 //route Api/Authcontroller::controllers
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('images', [ImageController::class, 'index'])->name('images');
 Route::post('images', [ImageController::class, 'upload'])->name('images');
@@ -70,37 +88,19 @@ Route::controller(RegionController::class)->group(function () {
 });
 
 
-Route::controller(QuartierController::class)->group(function () {
-    Route::get('/quartiers', 'QuartierController@index');
-    Route::get('/quartiers/{id}', 'QuartierController@show');
-    Route::post('/quartiers', 'QuartierController@store');
-    Route::put('/quartiers/{id}', 'QuartierController@update');
-    Route::delete('/quartiers/{id}', 'QuartierController@destroy');
-});
-Route::controller(ResponsableController::class)->group(function () {
-    Route::get('/responsables', 'ResponsableController@index');
-    Route::get('/responsables/{id}', 'ResponsableController@show');
-    Route::post('/responsables', 'ResponsableController@store');
-    Route::put('/responsables/{id}', 'ResponsableController@update');
-    Route::delete('/responsables/{id}', 'ResponsableController@destroy');
-});
 
-Route::controller(ProjetsController::class)->group(function () {
-    Route::get('/projets', 'ProjetsController@index');
-    Route::get('/projets/{id}', 'ProjetsController@show');
-    Route::post('/projets', 'ProjetsController@store');
-    Route::put('/projets/{id}', 'ProjetsController@update');
-    Route::delete('/projets/{id}', 'ProjetsController@destroy');
-});
 
-Route::controller(SecteurController::class)->group(function () {
-    Route::get('/secteurs', 'SecteurController@index');
-    Route::get('/secteurs/{id}', 'SecteurController@show');
-    Route::post('/secteurs', 'SecteurController@store');
-    Route::put('/secteurs/{id}', 'SecteurController@update');
-    Route::delete('/secteurs/{id}', 'SecteurController@destroy');
-});
-});
+
+
+
+// Route::controller(SecteurController::class)->group(function () {
+//     Route::get('/secteurs', 'SecteurController@index');
+//     Route::get('/secteurs/{id}', 'SecteurController@show');
+//     Route::post('/secteurs', 'SecteurController@store');
+//     Route::put('/secteurs/{id}', 'SecteurController@update');
+//     Route::delete('/secteurs/{id}', 'SecteurController@destroy');
+// });
+
 
 
 // Route::controller(OffreController::class)->group(function () {
@@ -117,7 +117,13 @@ Route::resource('offres',OffreController::class);
 
 
 
-
+Route::controller(QuartierController::class)->group(function () {
+    Route::get('/quartiers', 'QuartierController@index');
+    Route::get('/quartiers/{id}', 'QuartierController@show');
+    Route::post('/quartiers', 'QuartierController@store');
+    Route::put('/quartiers/{id}', 'QuartierController@update');
+    Route::delete('/quartiers/{id}', 'QuartierController@destroy');
+});
 
 
 

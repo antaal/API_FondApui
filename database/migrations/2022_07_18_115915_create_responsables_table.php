@@ -17,27 +17,23 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-   
             $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->dateTime('date_Naissance');
             $table->string('Telephone');
             $table->boolean('Genre');
-            $table->string('Numero_identite');
+            $table->String('Numero_identite');
             $table->string('releve_Bancaire');
-            $table->string('CNI_recto');
-            // $table->string('CNI_verso');
-            // $table->String('NINEA_Recepisse');
+            $table->String('Numero_piece');
+             $table->String('Recepisse');
             $table->enum('type_Representant',
              ['Association', 'Entreprise', 'Individu'])
-            // ->default("Individu")
             ;
-
-            $table->unsignedBigInteger('id_quartier');
-            $table->foreign('id_quartier')->references('id')->on('quartiers');
-            // $table->unsignedBigInteger('users_id');
-            // $table->foreign('users_id')->references('id')->on('users');
+            $table->unsignedBigInteger('quartiers_id');
+            $table->foreign('quartiers_id')->references('id')->on('quartiers');
+            //  $table->unsignedBigInteger('users_id');
+            //  $table->foreign('users_id')->references('id')->on('users');
+            
             $table->timestamps();
         });
     }

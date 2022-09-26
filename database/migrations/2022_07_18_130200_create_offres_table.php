@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('offres', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titre');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->string('description');
             $table->dateTime('date_Lancement');
             $table->dateTime('fin_Depot');
+            $table->string('secteur');
             // $table->unsignedBigInteger('secteur_id')->nullable();
             // $table->foreign('secteur_id')->references('id')->on('secteurs');
             // $table->unsignedBigInteger('administrateur_id');

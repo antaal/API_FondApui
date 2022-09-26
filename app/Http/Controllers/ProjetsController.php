@@ -5,13 +5,19 @@ use App\Models\Projet;
 use App\Models\Responsable;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjetsController extends Controller
 {
     //
     public function index()
     {
-        return Projet::all();
+        return 
+        Projet::all();
+        // response()->json([
+        //     'status' => 'success',
+        //     'data' =>Responsable::with('responsable')->get()
+        // ], 200);
     }
     public function show($id)
     {
@@ -20,15 +26,15 @@ class ProjetsController extends Controller
 
     public function store(Request $request)
     {
-        return $request->user();
+    //    return $request->user();
 
-//        $data = $request->all();
-//
-//       $responsable=Responsable::create($request->all());
-//       $data['responsable_id']=$responsable->id;
-//        $projet= Projet::create($data);
-//        return response()->json($projet, 201);
-        }
+
+    $data = $request->all();
+    $responsable=Responsable::create($request->all());
+    $data['responsables_id']=$responsable->id;
+     $projet= Projet::create($data);        
+     return response()->json($projet, 201);
+    }
 
     public function update(Request $request, $id)
     {

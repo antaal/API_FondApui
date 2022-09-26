@@ -17,6 +17,7 @@ class Responsable extends Model
     {
         return $this->hasOne(Projet::class);
     }
+
     public function quartiers()
     {
         return $this->belongsTo(Quartier::class);
